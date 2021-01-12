@@ -14,8 +14,70 @@ Your AvatarImage is going to have an image attached that is created from the sum
 Active storage allows us to attach image files as well as video and audio files to a model. It’s really cool and super easy to set up. To add this to your app simply run the command:
 
 
-```$ rails active_storage:install
-```$ rails db:migrate
+```
+$ rails active_storage:install
+$ rails db:migrate
+```
+ Once migrated, this creates the two tables active_storage_blobs and active_storage_attachments. That’s enough to get you up and running but If you want to learn more about Active Storage check out the [docs here](https://edgeguides.rubyonrails.org/active_storage_overview.html#setup).
+
+Viola! You are now able to declare that your model has an image attached! Simply add to your models the macro has_one_attached and the attachment’s name. You can call the attachment whatever you want. Here I’ve simply called it ‘image’.
+
+```
+
+class Head < ApplicationRecord
+	has_one_attached :image
+end
+
+class Shirt < ApplicationRecord
+	has_one_attached :image
+end
+
+class Hand < ApplicationRecord
+	has_one_attached :image
+end
+
+class Pant < ApplicationRecord
+	has_one_attached :image
+end
+
+class Feet < ApplicationRecord
+	has_one_attached :image
+end
+```
+Make sure to add the image key to your params. To upload an image in your new and edit forms you can add a file_field to your form. 
+
+Which looks like this in the browser:
+<put image here>
+  
+  If your users simply want to upload a personal image as an avatar this is a great way to do that. However, we want the user to create the avatar image themselves from our own stylized characters. Now that you can upload image files for all the avatar parts, create the images as layers with a transparent background (PNG format supports transparent backgrounds). Play around with how they line up and the order of the layers. The order is important for your z-index later on. For instance you would want your pants image to be layered on top of your legs image and etc.
+
+<put screenshot here >
+
+To make things simple, I just stored all the item’s images in the ‘app/assets/images’ folder. Then I seeded the database with all my avatar items and attached their images like so.
+
+```
+alien_head = Head.new
+alien_head.name = "Alien Head"
+alien_head.image.attach(
+    io: File.open("app/assets/images/avatar_demo_head_1.png"),
+    filename: "nw.png"
+)
+alien_head.save
+
+alien_hand = Hand.new
+alien_hand.name = "Alien Hands"
+alien_hand.image.attach(
+    io: File.open("app/assets/images/avatar_demo_arms_1.png"),
+    filename: "nw.png"
+)
+alien_hand.save
+```
+Don’t forget to run ```$ rails db:seed``` in your terminal before continuing.
+
+
+
+
+
 
 
 

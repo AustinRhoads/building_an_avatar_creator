@@ -44,7 +44,12 @@ class Feet < ApplicationRecord
 	has_one_attached :image
 end
 ```
-Make sure to add the image key to your params. To upload an image in your new and edit forms you can add a file_field to your form. 
+Make sure to add the ```:image``` key to your params. To upload an image in your new and edit forms you can add a file_field to your form. 
+
+```
+<%= f.label "Choose your image." %>
+<%= f.file_field :image %><br>
+```
 
 Which looks like this in the browser:
 

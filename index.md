@@ -63,19 +63,25 @@ To make things simple, I just stored all the item’s images in the ‘app/asset
 
 ```
 alien_head = Head.new
+
 alien_head.name = "Alien Head"
+
 alien_head.image.attach(
     io: File.open("app/assets/images/avatar_demo_head_1.png"),
     filename: "nw.png"
 )
+
 alien_head.save
 
 alien_hand = Hand.new
+
 alien_hand.name = "Alien Hands"
+
 alien_hand.image.attach(
     io: File.open("app/assets/images/avatar_demo_arms_1.png"),
     filename: "nw.png"
 )
+
 alien_hand.save
 ```
 Don’t forget to run ```$ rails db:seed``` in your terminal before continuing.
@@ -114,30 +120,38 @@ Now we can select from each possible item in the form.
 
 ```
 <%= form_for(@avatar_image, local: true, html: {multipart: true}) do |f| %>
+
 <div class="field">
 <%= f.label :head_id %>
 <%= f.collection_select :head_id, @heads, :id, :name,{include_blank: 'pick your head!'}%>
 </div>
+
 <div class="field">
 <%= f.label :shirt_id %>
 <%= f.collection_select :shirt_id, @shirts, :id, :name,{include_blank: 'pick your shirt!'}%>
 </div>
+
 <div class="field">
 <label for = "avatar_image_hand_id">Hands</label>
 <%= f.collection_select :hand_id, @hands, :id, :name,{include_blank: 'pick your hands!'}%>
 </div>
+
 <div class="field">
 <label for = "avatar_image_pant_id">Pants</label>
 <%= f.collection_select :pant_id, @pants, :id, :name,{include_blank: 'pick your pants!'}%>
 </div>
+
 <div class="field">
 <label for = "avatar_image_pant_id">Feet</label>
 <%= f.collection_select :feet_id, @feets, :id, :name,{include_blank: 'pick your feet!'}%>
 </div>
+
 <%= f.hidden_field :image %>
+
 <div class="actions">
 <%= f.submit "Save avatar", :id => 'create_avatar_image' %>
 </div>
+
 <% end %>
 ```
 
@@ -150,6 +164,7 @@ In ‘views/avatar_images/_form’:
 <% head_1 = Head.find(1) %>   
 <% head_2 = Head.find(2) %>
 <% head_3 = Head.find(3) %>
+
 <%= image_tag(head_1.image, :class => "avatar_image_head_1 head hide_img") %>
 <%= image_tag(head_2.image, :class => "avatar_image_head_2 head hide_img") %>
 <%= image_tag(head_3.image, :class => "avatar_image_head_3 head hide_img") %>
@@ -157,6 +172,7 @@ In ‘views/avatar_images/_form’:
 <% hand_1 = Hand.find(1) %>
 <% hand_2 = Hand.find(2) %>
 <% hand_3 = Hand.find(3) %>
+
 <%= image_tag(hand_1.image, :class => "avatar_image_hand_1 hand hide_img") %>
 <%= image_tag(hand_2.image, :class => "avatar_image_hand_2 hand hide_img") %>
 <%= image_tag(hand_3.image, :class => "avatar_image_hand_3 hand hide_img") %>
@@ -164,6 +180,7 @@ In ‘views/avatar_images/_form’:
 <% shirt_1 = Shirt.find(1) %>
 <% shirt_2 = Shirt.find(2) %>
 <% shirt_3 = Shirt.find(3) %>
+
 <%= image_tag(shirt_1.image, :class => "avatar_image_shirt_1 shirt hide_img") %>
 <%= image_tag(shirt_2.image, :class => "avatar_image_shirt_2 shirt hide_img") %>
 <%= image_tag(shirt_3.image, :class => "avatar_image_shirt_3 shirt hide_img") %>
@@ -171,6 +188,7 @@ In ‘views/avatar_images/_form’:
 <% pant_1 = Pant.find(1) %>
 <% pant_2 = Pant.find(2) %>
 <% pant_3 = Pant.find(3) %>
+
 <%= image_tag(pant_1.image, :class => "avatar_image_pant_1 pant hide_img") %>
 <%= image_tag(pant_2.image, :class => "avatar_image_pant_2 pant hide_img") %>
 <%= image_tag(pant_3.image, :class => "avatar_image_pant_3 pant hide_img") %>
@@ -178,6 +196,7 @@ In ‘views/avatar_images/_form’:
 <% feet_1 = Feet.find(1) %>
 <% feet_2 = Feet.find(2) %>
 <% feet_3 = Feet.find(3) %>
+
 <%= image_tag(feet_1.image, :class => "avatar_image_feet_1 feet hide_img") %>
 <%= image_tag(feet_2.image, :class => "avatar_image_feet_2 feet hide_img") %>
 <%= image_tag(feet_3.image, :class => "avatar_image_feet_3 feet hide_img") %>
@@ -198,116 +217,151 @@ show_feet();
 show_hand();
 show_shirt();
 show_pants();
+
 //grab the select element
+
 var head_select = document.querySelector("select#avatar_image_head_id");
+
 //add the event listeners
+
 head_select.addEventListener("click", show_head);
 head_select.addEventListener("click", construct_image);
+
 //adds the selected class to the head image. removes the selected class from all other heads
+
 function show_head(){
-var head_select = document.getElementById("avatar_image_head_id");
-if(head_select.value){
-//find the image by it's id, which is the value of the select element
-var head_image = document.querySelector("img.avatar_image_head_" + head_select.value);
-var all_head_images = document.querySelectorAll("img.head");
-//removes the class selected from all heads
-all_head_images.forEach(el => el.classList.remove("selected")); 
-//adds selected to the correct head
-head_image.classList.add("selected");
+	var head_select = document.getElementById("avatar_image_head_id");
+	if(head_select.value){
+	//find the image by it's id, which is the value of the select element
+	var head_image = document.querySelector("img.avatar_image_head_" + head_select.value);
+	var all_head_images = document.querySelectorAll("img.head");
+	//removes the class selected from all heads
+	all_head_images.forEach(el => el.classList.remove("selected")); 
+	//adds selected to the correct head
+	head_image.classList.add("selected");
+	};
 };
-};
+
+
 
 // and now for all the rest
+
+
+
 var hand_select = document.querySelector("select#avatar_image_hand_id");
+
 hand_select.addEventListener("click", show_hand);
 hand_select.addEventListener("click", construct_image);
+
 function show_hand(){
-var hand_select = document.getElementById("avatar_image_hand_id");
-if(hand_select.value){
-var hand_image = document.querySelector("img.avatar_image_hand_" + hand_select.value);
-var all_hand_images = document.querySelectorAll("img.hand");
-all_hand_images.forEach(el => el.classList.remove("selected"));
-hand_image.classList.add("selected"); 
+	var hand_select = document.getElementById("avatar_image_hand_id");
+	if(hand_select.value){
+	var hand_image = document.querySelector("img.avatar_image_hand_" + hand_select.value);
+	var all_hand_images = document.querySelectorAll("img.hand");
+	all_hand_images.forEach(el => el.classList.remove("selected"));
+	hand_image.classList.add("selected"); 
+	};
 };
-};
+
+
 var shirt_select = document.querySelector("select#avatar_image_shirt_id");
+
 shirt_select.addEventListener("click", show_shirt);
 shirt_select.addEventListener("click", construct_image);
+
 function show_shirt(){  
-var shirt_select = document.getElementById("avatar_image_shirt_id");
-if( shirt_select.value){
-var shirt_image = document.querySelector("img.avatar_image_shirt_" + shirt_select.value);
-var all_shirt_images = document.querySelectorAll("img.shirt");
-all_shirt_images.forEach(el => el.classList.remove("selected"));
-shirt_image.classList.add("selected");
+	var shirt_select = document.getElementById("avatar_image_shirt_id");
+	if( shirt_select.value){
+	var shirt_image = document.querySelector("img.avatar_image_shirt_" + shirt_select.value);
+	var all_shirt_images = document.querySelectorAll("img.shirt");
+	all_shirt_images.forEach(el => el.classList.remove("selected"));
+	shirt_image.classList.add("selected");
+	};
 };
-};
+
+
 var feet_select = document.querySelector("select#avatar_image_feet_id");
+
 feet_select.addEventListener("click", show_feet);
 feet_select.addEventListener("click", construct_image);
+
 function show_feet(){
-var feet_select = document.getElementById("avatar_image_feet_id");
-if(feet_select.value){
-var feet_image = document.querySelector("img.avatar_image_feet_" + feet_select.value);
-var all_feet_images = document.querySelectorAll("img.feet");
-all_feet_images.forEach(el => el.classList.remove("selected"));
-feet_image.classList.add("selected");
+	var feet_select = document.getElementById("avatar_image_feet_id");
+	if(feet_select.value){
+	var feet_image = document.querySelector("img.avatar_image_feet_" + feet_select.value);
+	var all_feet_images = document.querySelectorAll("img.feet");
+	all_feet_images.forEach(el => el.classList.remove("selected"));
+	feet_image.classList.add("selected");
+	};
 };
-};
+
+
 var pants_select = document.querySelector("select#avatar_image_pant_id");
+
 pants_select.addEventListener("click", show_pants);
 pants_select.addEventListener("click", construct_image);
-function show_pants(){
-var pants_select = document.getElementById("avatar_image_pant_id");
-if( pants_select.value){
 
-var pants_image = document.querySelector("img.avatar_image_pant_" + pants_select.value);
-var all_pants_images = document.querySelectorAll("img.pant");
-all_pants_images.forEach(el => el.classList.remove("selected"));
-pants_image.classList.add("selected");
+function show_pants(){
+	var pants_select = document.getElementById("avatar_image_pant_id");
+	if( pants_select.value){
+	var pants_image = document.querySelector("img.avatar_image_pant_" + pants_select.value);
+	var all_pants_images = document.querySelectorAll("img.pant");
+	all_pants_images.forEach(el => el.classList.remove("selected"));
+	pants_image.classList.add("selected");
+	};
 };
-};
+
+
 //grab all your elements
+
 var visible_canvas = document.querySelector("#visible_canvas");
 var ctx = visible_canvas.getContext("2d");
 const grid = document.querySelector(".avatar_grid");
 var hidden_canvas = document.querySelector("#hidden_canvas");
 var ctx_2 = hidden_canvas.getContext("2d");
+
+
 // these next few functions put all the items images together as one image on the hidden canvas
 //then scales that image in a way that preserves thier quality 
 //to your visible canvas set to whatever dimensions you want.
+
+
 function construct_image(){
-ctx.clearRect(0, 0, visible_canvas.width, visible_canvas.height);
-ctx_2.clearRect(0, 0, hidden_canvas.width, hidden_canvas.height);
-var images_head = document.querySelector("img.head.selected");
-var images_feet = document.querySelector("img.feet.selected");
-var images_hand = document.querySelector("img.hand.selected");
-var images_shirt = document.querySelector("img.shirt.selected");
-var images_pants = document.querySelector("img.pant.selected");
-var images_array = [images_shirt, images_hand, images_feet, images_head, images_pants ];
-var filtered = images_array.filter(function (el) {
-return el != null;
-});
-filtered.forEach(img => ctx_2.drawImage(img, 0,0));
-hi_res_draw(hidden_canvas);
+	ctx.clearRect(0, 0, visible_canvas.width, visible_canvas.height);
+	ctx_2.clearRect(0, 0, hidden_canvas.width, hidden_canvas.height);
+	var images_head = document.querySelector("img.head.selected");
+	var images_feet = document.querySelector("img.feet.selected");
+	var images_hand = document.querySelector("img.hand.selected");
+	var images_shirt = document.querySelector("img.shirt.selected");
+	var images_pants = document.querySelector("img.pant.selected");
+	var images_array = [images_shirt, images_hand, images_feet, images_head, images_pants ];
+	var filtered = images_array.filter(function (el) {
+	return el != null;
+	});
+	filtered.forEach(img => ctx_2.drawImage(img, 0,0));
+	hi_res_draw(hidden_canvas);
 };
+
+
 function hi_res_draw(img){
-for(let x = 0; x < 33; x++){
-var c1 = scaleIt(img,0.99999999999999999);
+	for(let x = 0; x < 33; x++){
+	var c1 = scaleIt(img,0.99999999999999999);
+	};
+	visible_canvas.width = c1.width/2;
+	visible_canvas.height = c1.height/2;
+	ctx.drawImage(c1, 0,0, c1.width, c1.height, 0, 0,  visible_canvas.width, visible_canvas.height);
 };
-visible_canvas.width = c1.width/2;
-visible_canvas.height = c1.height/2;
-ctx.drawImage(c1, 0,0, c1.width, c1.height, 0, 0,  visible_canvas.width, visible_canvas.height);
-};
+
+
 function scaleIt(source,scaleFactor){
-var c = document.createElement('canvas');
-var ctx = c.getContext('2d');
-var w = source.width*scaleFactor;
-var h = source.height*scaleFactor;
-c.width = w;
-c.height = h;
-ctx.drawImage(source,0,0,w,h);
-return(c);
+	var c = document.createElement('canvas');
+	var ctx = c.getContext('2d');
+	var w = source.width*scaleFactor;
+	var h = source.height*scaleFactor;
+	c.width = w;
+	c.height = h;
+	ctx.drawImage(source,0,0,w,h);
+	return(c);
 }
 ```
 
@@ -344,20 +398,22 @@ Update the uploader file you created:
 
 ```
 class ImageUploader < CarrierWave::Uploader::Base
- include CarrierWave::RMagick
-storage :file
-def store_dir
-"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
-end
-version :thumb do
-process :resize_to_limit => [100, 100]
-end
-version :medium do
-process :resize_to_limit => [300, 500]
-end
-version :large do
-process :resize_to_limit => [800, 1200]
-end
+	 include CarrierWave::RMagick
+	 
+	storage :file
+	def store_dir
+	"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+	end
+	
+	version :thumb do
+		process :resize_to_limit => [100, 100]
+	end
+	version :medium do
+		process :resize_to_limit => [300, 500]
+	end
+	version :large do
+		process :resize_to_limit => [800, 1200]
+	end
 end
 ```
 Now we can submit the base64 string and the uploader will convert it to an image and persist it to the database. In the ‘app/uploaders/image_uploader’ file I’ve defined three versions that will be created when an image is uploaded as well as their width and height but you can create as many versions with any name and any size you wish!
@@ -367,17 +423,25 @@ Next we can actually create the image and submit it. Here we add an event listen
 In your JS:
 ```
 //grabbing the submit button and adding the function that creates the dataURL and submit it
+
 document.getElementById('create_avatar_image').addEventListener('click', image_printer);
+
 function image_printer(){
-//converts visible to dataURL
-const dataURL = hidden_canvas.toDataURL("image/png");
-//creates image element and defines its source as the dataurl
-var dataImg = document.createElement('img');
-dataImg.src = dataURL;
-var drawingField = document.createElement('div');
-//this is a bit tricky!!!
-drawingField.innerHTML = "<input type='hidden' name='avatar_image[image]' id='avatar_image_image' value='" + dataImg.src + "'>" ;
-document.getElementById('avatar_image_image').value = dataURL;
+
+	//converts visible to dataURL
+
+	const dataURL = hidden_canvas.toDataURL("image/png");
+
+	//creates image element and defines its source as the dataurl
+	
+	var dataImg = document.createElement('img');
+	dataImg.src = dataURL;
+	var drawingField = document.createElement('div');
+	
+	//this is a bit tricky!!!
+
+	drawingField.innerHTML = "<input type='hidden' name='avatar_image[image]' id='avatar_image_image' value='" + dataImg.src + "'>" ;
+	document.getElementById('avatar_image_image').value = dataURL;
 };
 ```
 To display it in your show page, reference the object’s image_url and specify which version you wish to use.

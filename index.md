@@ -6,10 +6,10 @@ Almost as a guilty pleasure I’ve always loved apps that have the feature to cr
 -**Creating the Avatar Image form**
 -**Creating and submitting base64 encoded images through the form**
 
-##**Handling images**
+## **Handling images**
 Your AvatarImage is going to have an image attached that is created from the summation of all it’s smaller parts. Each of those items (head, hands, shirt, pants, feet etc…) will also have its own class and an image attached. Managing all these items means we’ll be storing, uploading and displaying lots of image files. Lucky for us, included in rails 5.2 is the Active Storage gem. 
 
-###**Active Storage**
+### **Active Storage**
 
 Active storage allows us to attach image files as well as video and audio files to a model. It’s really cool and super easy to set up. To add this to your app simply run the command:
 
@@ -74,7 +74,7 @@ alien_hand.save
 ```
 Don’t forget to run ```$ rails db:seed``` in your terminal before continuing.
 
-##**Creating the AvatarImage form**
+## **Creating the AvatarImage form**
 
 Next we create a form to build the AvatarImage. We’ll use JavaScript and CSS to hide and display the images in real time as selected in the form.
 
@@ -176,14 +176,14 @@ In ‘views/avatar_images/_form’:
 <%= image_tag(feet_2.image, :class => "avatar_image_feet_2 feet hide_img") %>
 <%= image_tag(feet_3.image, :class => "avatar_image_feet_3 feet hide_img") %>
 ```
-I your CSS file:
+In your CSS file:
 
 ```
 .hide_img{
     display: none;
 }
 ```
-in you’re JS file:
+In you’re JS file:
 
 ```
 
@@ -309,8 +309,8 @@ Without going into too much detail I just want to point out here that when worki
 
 <put image of form here >
 
-##**Creating and submitting base64 encoded images through the form**
-###**Base64 encoded images**
+## **Creating and submitting base64 encoded images through the form**
+### **Base64 encoded images**
 
 For the Avatar’s image we are going to do something a bit different than Active Storage. As each characteristic is selected they appear on a canvas HTML element. We are going to create an image from what is visible on the canvas using JS. To accomplish this we are going to convert the visible image into an encoded Base64 image. A base64 encoded image is actually string data that represents binary data in three 8-bit bytes sequences. This encoded string can then be uploaded and converted back to an image using CarrierWave and Rmagic.
 

@@ -308,7 +308,6 @@ return(c);
 
 Without going into too much detail I just want to point out here that when working with canvases, if you want control over the size of the AvatarImage being displayed the canvas tends to distort when you change its size. This is why I draw the image on a hidden canvas that is the same size as the image source, resize it to scale (the scaleIt and hi_res_draw functions) and draw it to the visible canvas.
 
-<put image of form here >
 
 ## **Creating and submitting base64 encoded images through the form**
 ### **Base64 encoded images**
@@ -383,7 +382,7 @@ To display it in your show page, reference the object’s image_url and specify 
 <%= image_tag @avatar_image.image_url(:medium), :class => "my_avatar_image" %>
 <% end %>
 ```
-<put image here>
+![Image](./Screenshot%20(2).png)
 
 And we’re done, yay! I hope this helps any interested people create thier own avatar creator. Have fun making all kinds of test avatars, and happy coding! 
 

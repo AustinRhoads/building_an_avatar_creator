@@ -47,7 +47,7 @@ end
 Make sure to add the image key to your params. To upload an image in your new and edit forms you can add a file_field to your form. 
 
 Which looks like this in the browser:
-<put image here>
+![Image](./choose_file.jpg)
   
   If your users simply want to upload a personal image as an avatar this is a great way to do that. However, we want the user to create the avatar image themselves from our own stylized characters. Now that you can upload image files for all the avatar parts, create the images as layers with a transparent background (PNG format supports transparent backgrounds). Play around with how they line up and the order of the layers. The order is important for your z-index later on. For instance you would want your pants image to be layered on top of your legs image and etc.
 

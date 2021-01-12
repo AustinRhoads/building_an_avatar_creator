@@ -453,7 +453,7 @@ To display it in your show page, reference the object’s image_url and specify 
 ```
 ![Image](./Screenshot%20(3).png)
 
-And we’re done, yay! I hope this helps any interested people create thier own avatar creator. Have fun making all kinds of test avatars, and happy coding! 
+And we’re done, yay! I hope this helps anyone interested in building thier own avatar creator. Have fun making all kinds of test avatars, and happy coding! 
 
 
 

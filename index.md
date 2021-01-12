@@ -52,7 +52,7 @@ Which looks like this in the browser:
   
   If your users simply want to upload a personal image as an avatar this is a great way to do that. However, we want the user to create the avatar image themselves from our own stylized characters. Now that you can upload image files for all the avatar parts, create the images as layers with a transparent background (PNG format supports transparent backgrounds). Play around with how they line up and the order of the layers. The order is important for your z-index later on. For instance you would want your pants image to be layered on top of your legs image and etc.
 
-<put screenshot here >
+![Image](./Screenshot%20(1).png)
 
 To make things simple, I just stored all the item’s images in the ‘app/assets/images’ folder. Then I seeded the database with all my avatar items and attached their images like so.
 
